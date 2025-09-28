@@ -1,15 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { styles } from './ProfileStyle';
-import { Button } from '../../components/Button/Button'
+import profileIcon from '../../../assets/user-icon.png';
+import { Header } from '../../components/Header/Header';
 
+export default function Profile({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Header title="Perfil" />
 
-export default function Profile({navigation}) {
-    <View>
-        <Text>Testando</Text>
-        <Button 
-            title="Entrar"
-            onPress={() => navigation.navigate('Hub')}
-        />
+      <View style={styles.profileInfo}>
+        <Image style={styles.profileIcon} source={profileIcon} />
+        <Text style={styles.name}>Nome Sobrenome</Text>
+        <Text style={styles.email}>seuemail@seuemail.com</Text>
+      </View>
+
+      <View style={styles.ecoinsBackground}>
+        <Text style={styles.ecoinsText}>+50 Ecoins</Text>
+      </View>
+      
+      <View style={styles.rewardsContainer}>
+        <Text style={styles.rewardsTitle}>Recompensas disponíveis</Text>
+        <Text style={styles.rewardItem}>50 Ecoins = R$5 em Parceiro X</Text>
+        <Text style={styles.rewardItem}>100 Ecoins = Desconto em Delivery Y</Text>
+        <Text style={styles.rewardItem}>150 Ecoins = R$5 em Parceiro Z</Text>
+      </View>
     </View>
+  );
 }
