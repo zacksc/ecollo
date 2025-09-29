@@ -30,31 +30,40 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   ecoinsBackground: {
-    backgroundColor: '#445a14',
+    backgroundColor: '#5c7c31',
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 8,
     marginBottom: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
   },
   ecoinsText: {
     color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
+    top: 20,
+    fontSize: 22,
+    fontWeight: 900,
   },
   rewardsContainer: {
     width: '80%',
     padding: 10,
-    backgroundColor: '#99b66f',
-    borderRadius: 5,
+    backgroundColor: '#bcd4a8',
+    borderRadius: 8,
+    alignItems: 'center',
   },
   rewardsTitle: {
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#fff',
   },
   rewardItem: {
-    fontSize: 14,
+    fontSize: 16,
     color: '#fff',
     marginBottom: 5,
   },
+  ecoinsIcon: {
+    width: 80,
+    height: 70,
+    resizeMode: 'contain',
+  }
 });

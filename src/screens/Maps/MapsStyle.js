@@ -6,5 +6,8 @@ export const styles = StyleSheet.create({
         height: 450,
         bottom: 70,
     },
-
+    cardContainer:{
+        bottom: 170,
+        alignItems: 'center',
+    },
 })

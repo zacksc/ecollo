@@ -20,7 +20,21 @@ export default function Maps({navigation}) {
         style={styles.mapContainer}
         source={mapImage}
       />
-      <CardMapsPage />
+      <View style={styles.cardContainer}>
+      <CardMapsPage 
+        local = 'Supermercado Frangolandia'
+        distance = '300m'
+      />
+      <CardMapsPage 
+        local = 'Supermercado Assaí'
+        distance = '450m'
+      />
+      <CardMapsPage 
+        local = 'Ponto Leste'
+        distance = '600m'
+      />
+      </View>
+
     </View>
     )
 }

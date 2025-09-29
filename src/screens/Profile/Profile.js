@@ -3,6 +3,7 @@ import { View, Text, Image } from 'react-native';
 import { styles } from './ProfileStyle';
 import profileIcon from '../../../assets/user-icon.png';
 import { Header } from '../../components/Header/Header';
+import ecoins from '../../../assets/ecoins.png'
 
 export default function Profile({ navigation }) {
   return (
@@ -16,6 +17,7 @@ export default function Profile({ navigation }) {
       </View>
 
       <View style={styles.ecoinsBackground}>
+        <Image style={styles.ecoinsIcon} source={ecoins}/>
         <Text style={styles.ecoinsText}>+50 Ecoins</Text>
       </View>
       
