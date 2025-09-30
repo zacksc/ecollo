@@ -2,9 +2,8 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { styles } from './CardGuideStyles';
-import icon from '../../../../assets/ecoins-icon.png'
 
-export const CardGuide = ({ title, description, color }) => {
+export const CardGuide = ({ title, description, color, icon }) => {
   return (
     <View style={[styles.card, { backgroundColor: color }]}>
       <View style={styles.cardHeader}>

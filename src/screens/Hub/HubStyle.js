@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',  // Espaçamento uniforme entre itens
     alignItems: 'flex-start',  // Alinha o topo para linhas uniformes
     width: '100%',
-    paddingHorizontal: 50,  // Margem lateral para não colar nas bordas
+    paddingHorizontal: 20,  // Margem lateral para não colar nas bordas
 },
   cardItem: {  // Estilo para cada TouchableOpacity (adicione no Hub.js)
     width: '45%',  // Força 2 por linha (45% + espaço)

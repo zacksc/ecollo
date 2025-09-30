@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, ScrollView } from 'react-native';
 import { styles } from './RadarStyle';
 import { Button } from '../../components/Button/Button'
 import { Header } from '../../components/Header/Header'
@@ -15,7 +15,7 @@ export default function Radar({navigation}) {
           title="Rastreabilidade"
           subtitle="Acompanhe seu resíduo"
         />
-      <View style={styles.requestContainer}>
+      <ScrollView style={styles.requestContainer}>
       <RequestCard 
       orderNumber = '00001'
       date = '23/12/2024'
@@ -36,7 +36,7 @@ export default function Radar({navigation}) {
       date = '16/01/2024'
       location = 'A'
       />
-      </View>
+      </ScrollView>
       </View>
     </View>
     )

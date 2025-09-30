@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, ScrollView } from 'react-native';
 import { styles } from './MapsStyle';
 import { Button } from '../../components/Button/Button'
 import { Header } from '../../components/Header/Header'
@@ -20,7 +20,7 @@ export default function Maps({navigation}) {
         style={styles.mapContainer}
         source={mapImage}
       />
-      <View style={styles.cardContainer}>
+      <ScrollView style={styles.cardContainer}>
       <CardMapsPage 
         local = 'Supermercado Frangolandia'
         distance = '300m'
@@ -33,7 +33,7 @@ export default function Maps({navigation}) {
         local = 'Ponto Leste'
         distance = '600m'
       />
-      </View>
+      </ScrollView>
 
     </View>
     )
