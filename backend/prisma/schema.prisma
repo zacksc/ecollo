@@ -1,0 +1,142 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//////////////////////////
+// Enums
+//////////////////////////
+enum RedemptionStatus {
+  APPROVED
+  PENDING
+  CANCELLED
+}
+
+//////////////////////////
+// Core
+//////////////////////////
+model Profile {
+  id          String       @id @default(cuid())
+  publicId    String       @unique // UUID salvo no app
+  name        String?
+  ecoins      Int          @default(0)
+  deposits    Deposit[]
+  redemptions Redemption[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([publicId])
+}
+
+model MaterialType {
+  id            String    @id @default(cuid())
+  name          String
+  unit          String // "kg" | "un" (texto livre no MVP)
+  pointsPerUnit Int
+  deposits      Deposit[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([name, unit])
+}
+
+model CollectionPoint {
+  id        String    @id @default(cuid())
+  name      String
+  lat       Float
+  lng       Float
+  address   String?
+  active    Boolean   @default(true)
+  deposits  Deposit[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Índice simples para consultas por proximidade (Haversine no MVP)
+  @@index([lat, lng])
+  @@index([active])
+}
+
+model Deposit {
+  id                String   @id @default(cuid())
+  profileId         String
+  collectionPointId String
+  materialId        String
+  quantity          Float
+  pointsEarned      Int
+  createdAt         DateTime @default(now())
+
+  profile         Profile         @relation(fields: [profileId], references: [id])
+  collectionPoint CollectionPoint @relation(fields: [collectionPointId], references: [id])
+  material        MaterialType    @relation(fields: [materialId], references: [id])
+
+  @@index([profileId])
+  @@index([collectionPointId])
+  @@index([materialId])
+  @@index([createdAt])
+}
+
+//////////////////////////
+// Recompensas
+//////////////////////////
+model Partner {
+  id        String   @id @default(cuid())
+  name      String
+  contact   String?
+  rewards   Reward[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([name])
+}
+
+model Reward {
+  id          String       @id @default(cuid())
+  partnerId   String
+  title       String
+  cost        Int // ecoins necessários
+  stock       Int          @default(0)
+  active      Boolean      @default(true)
+  partner     Partner      @relation(fields: [partnerId], references: [id])
+  redemptions Redemption[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@index([active])
+  @@index([partnerId])
+}
+
+model Redemption {
+  id        String           @id @default(cuid())
+  profileId String
+  rewardId  String
+  status    RedemptionStatus @default(APPROVED) // simples no MVP
+  code      String           @unique // código do resgate (QR/cupom)
+  createdAt DateTime         @default(now())
+
+  profile Profile @relation(fields: [profileId], references: [id])
+  reward  Reward  @relation(fields: [rewardId], references: [id])
+
+  @@index([profileId])
+  @@index([rewardId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+//////////////////////////
+// Dicas
+//////////////////////////
+model Tip {
+  id        String   @id @default(cuid())
+  text      String
+  active    Boolean  @default(true)
+  order     Int? // para ordenar no app
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([active])
+  @@index([order])
+}
