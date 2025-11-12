@@ -1,4 +1,3 @@
-// src/screens/auth/Login.jsx
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { Text, View, Alert, ActivityIndicator, TouchableOpacity } from 'react-native';
