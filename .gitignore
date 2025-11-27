@@ -1,0 +1,22 @@
+# Dependências
+node_modules/
+
+# Build Nest
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# Env
+.env.local
+.env.development
+.env.production
+
+# Prisma SQLite (se usar)
+prisma/dev.db
+prisma/dev.db-journal
